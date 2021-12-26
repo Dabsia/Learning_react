@@ -5,7 +5,7 @@ class Contact extends Component {
     constructor(){
         super()
         this.state = {
-            name: 'Dabsia'
+            showContactInfo :false
         }
 
         // this.onShowClick = this.onShowClick.bind(this)
@@ -20,22 +20,27 @@ class Contact extends Component {
 
     }
 
-onShowClick =() =>{
-    console.log('I was clicked')
+    onShowClick =() =>{
+    // Setting the state tobe the opposite of the previous state
+    // For toggling
+    this.setState({showContactInfo: !this.state.showContactInfo})
     // If you want to pass an argument to a function
     // this.onShowClick.bind(this, param)
 }
     render() {
-        const { name, email, phone, course } = this.props
+        const { name, email, phone, course } = this.props;
+        const {showContactInfo} = this.state
         return (
+            // Using the ternary operator, if showContactInfo is false, Hide info else showInfo
             <div className = 'card card-body mb-3'>
                 <h4>{name}<i onClick={this.onShowClick} class="ri-arrow-down-s-fill"></i></h4>
-                <ul className = 'list-group'>
+                {showContactInfo ? <ul className = 'list-group'>
                     <li className = 'list-group'>Email: {email}</li>
                     <li className = 'list-group'>Course: {course}</li>
                     <li className = 'list-group'>Phone: {phone}</li>
-                    
                 </ul>
+                : null}
+                
             </div>
         )
     }

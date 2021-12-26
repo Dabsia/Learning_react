@@ -7,6 +7,7 @@ class Contacts extends Component{
     constructor(){
         super()
         this.state = {
+            // State is immutsble
           contacts: [
               {
                   id: 1,
@@ -24,18 +25,26 @@ class Contacts extends Component{
             },
             {
                 id: 3,
-                name: 'Nico Jacksons',
+                name: 'Nico Jackson',
                 email: 'nicojackson@gmail.com',
                 phone: '333-333-3333',
                 course: 'computer science'
-                }
+                },
+                {
+                    id: 4,
+                    name: 'Precious Felix',
+                    email: 'preciousfelix@gmail.com',
+                    phone: '222-222-2222',
+                    course: 'banking and finance'
+                    }
+                 
             ]
         }
     }
     render(){
         const {contacts} = this.state;
         return(
-            <div>
+            <React.Fragment>
                 {contacts.map(contact => (<Contact
                         key = {contact.id}
                         name = {contact.name}
@@ -46,10 +55,12 @@ class Contacts extends Component{
                 )
                 
             )}
-            </div>
+            </React.Fragment>
         )
     }
 }
+
+// A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
 
 
 export default Contacts;

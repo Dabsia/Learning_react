@@ -19,6 +19,9 @@ class Contact extends Component {
         phone: PropTypes.string.isRequired
 
     }
+    onDeleteClick = () =>{
+        this.props.deleteClickHandler()
+    }
 
     onShowClick =() =>{
     // Setting the state tobe the opposite of the previous state
@@ -33,7 +36,8 @@ class Contact extends Component {
         return (
             // Using the ternary operator, if showContactInfo is false, Hide info else showInfo
             <div className = 'card card-body mb-3'>
-                <h4>{name}<i onClick={this.onShowClick} class="ri-arrow-down-s-fill"></i></h4>
+                <h4>{name}<i onClick={this.onShowClick} class="ri-arrow-down-s-fill" style = {{cursor: 'pointer'}}></i>
+                <i style = {{cursor: 'pointer', color: 'red', float: 'right'}} onClick={this.onDeleteClick} class="ri-delete-bin-fill"></i></h4>
                 {showContactInfo ? <ul className = 'list-group'>
                     <li className = 'list-group'>Email: {email}</li>
                     <li className = 'list-group'>Course: {course}</li>

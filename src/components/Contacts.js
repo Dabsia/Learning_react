@@ -36,24 +36,41 @@ class Contacts extends Component{
                     email: 'preciousfelix@gmail.com',
                     phone: '222-222-2222',
                     course: 'banking and finance'
-                    }
+                },
+                {
+                    id: 5,
+                    name: 'Kele Godfrey',
+                    email: 'kelegodfrey@gmail.com',
+                    phone: '777-777-7777',
+                    course: 'Agricultural Science'
+                }
                  
             ]
         }
     }
+
+deleteContact = (id) =>{
+    const {contacts} = this.state;
+
+    const newContacts = contacts.filter(contact => contact.id !== id)
+
+    this.setState({contacts: newContacts})
+}
+
     render(){
         const {contacts} = this.state;
         return(
             <React.Fragment>
-                {contacts.map(contact => (<Contact
+                {contacts.map(contact => (
+                <Contact
                         key = {contact.id}
                         name = {contact.name}
                         course = {contact.course}
                         email = {contact.email}
                         phone = {contact.phone}
+                        deleteClickHandler = {this.deleteContact.bind(this, contact.id)}
                     />
                 )
-                
             )}
             </React.Fragment>
         )
